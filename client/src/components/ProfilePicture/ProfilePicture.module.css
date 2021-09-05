@@ -1,0 +1,33 @@
+.ProfilePicture{
+    position: relative;
+}
+
+
+.Profile{
+    width: 35px !important;
+    height: 35px !important;
+    color: var(--color3);
+
+}
+
+.listProfilePicture{
+    width: 50px !important;
+    height: 50px !important; 
+}
+
+.dot{
+    position: absolute;
+    min-width: 6px;
+    min-height: 6px;
+    background-color: rgb(6, 221, 6);
+    border-radius: 50%;
+    top: 25px;
+    left: 27px;
+}
+
+.listDot{
+    min-width: 7px;
+    min-height: 7px;
+    top: 36px;
+    left: 36px;
+}

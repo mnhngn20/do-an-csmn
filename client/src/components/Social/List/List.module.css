@@ -1,0 +1,85 @@
+.List{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: 5px 5px;
+    width: 100%;
+    overflow-x: hidden;
+    transition: all 0.3 ease;
+}
+
+.Show{
+    animation: showList 0.5s forwards;
+}
+
+.Hide{
+    animation: hideList 0.5s forwards;
+    overflow: hidden !important;
+}
+
+.List::-webkit-scrollbar {
+    width: 6px;
+}
+
+.List::-webkit-scrollbar-track {
+    background: var(--color1);
+    border-radius: 5px;
+}
+
+.List::-webkit-scrollbar-thumb {
+    background: var(--color3);
+    border-radius: 2px;
+}
+
+.List::-webkit-scrollbar-thumb:hover {
+    background: var(--color3-dark);
+}
+
+@keyframes showList {
+    from{
+        height: 0vh;
+    }
+    to {
+        height: 32vh;
+    }
+}
+
+@keyframes hideList {
+    0% {
+        height: 32vh;
+    }
+    99% {
+        height: 0vh;
+    }
+    to {
+        height: 0vh;
+        opacity: 0;
+    }
+}
+
+@media(max-width: 900px){
+    .List{
+        padding: 10px 10px;
+        max-height: 55vh;
+    }
+    .List::-webkit-scrollbar {
+        display: none;
+        width: 6px;
+    }
+    
+    .List::-webkit-scrollbar-track {
+        background: var(--color1);
+        border-radius: 5px;
+    }
+    
+    .List::-webkit-scrollbar-thumb {
+        background: var(--color2);
+        border-radius: 2px;
+    }
+    
+    .List::-webkit-scrollbar-thumb:hover {
+        background: var(--color3-dark);
+    }
+
+}

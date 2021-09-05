@@ -1,0 +1,43 @@
+.Friend{
+    border-radius: 30px;
+    width: 20vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--color1);
+    padding: 2px 10px;
+    background-color: var(--color1-dark);
+    margin: 5px 5px;
+}
+
+.onlineFriend{
+    background-color: var(--color1) !important;
+
+}
+
+.Info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+}
+
+.Name{
+    margin: 2px 2px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Email{
+    margin: 2px 2px;
+    font-size: 10px;
+}
+
+@media(max-width: 900px){
+    .Friend{
+        border-radius: 30px;
+        width: 100%;
+    }
+
+}

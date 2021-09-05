@@ -1,0 +1,24 @@
+.NavBar{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    background-color: var(--color4);
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+}
+.MobileOnly{
+    display: none !important;
+}
+@media(max-width: 900px){
+    .Logo{
+        width: 40px !important;
+        height: 40px !important;
+        display: none;
+        color: var(--color1)
+    }
+    .MobileOnly{
+        display: block !important;
+    }
+}

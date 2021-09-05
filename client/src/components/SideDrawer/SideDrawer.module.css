@@ -1,0 +1,21 @@
+.SideDrawer{
+    min-width: 65vw;
+    min-height: 100vh;
+    position: absolute;
+    z-index: 150;
+    background-color: var(--color4);
+    transform: translateX(-100%);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.Show{
+    transform: translateX(0px);
+}
+
+.Logo{
+    width: 60px;
+    height: 60px;
+}

@@ -1,0 +1,42 @@
+.Info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid var(--color2-dark);
+}
+
+.Profile{
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.BackIcon{
+    color: var(--color3);
+    margin-right: -5px;
+    margin-left: 5px
+}
+
+.Name{
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color4)
+}
+
+.Name:hover{
+    color: var(--color4-dark)
+}
+
+.Settings{
+    margin: 0px 20px;
+    color: var(--color4);
+    width: 30px !important;
+    height: 30px !important;
+    padding: 5px 5px;
+}
+
+.Settings:hover{
+    background-color: var(--color2-dark);
+    border-radius: 50%;
+}

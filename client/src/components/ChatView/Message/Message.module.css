@@ -1,0 +1,53 @@
+.Container{
+    width: 100%;
+}
+
+.Message{
+    display: flex;
+    flex-flow: column;
+    margin: 10px 0px;
+    max-width: 50vw;
+}
+
+.senderMessage{
+    float: right;
+    align-items: flex-end;
+}
+
+.Top{
+    display: flex;
+    align-items: center;
+}
+
+.senderTop{
+    flex-flow: row-reverse;
+}
+
+.TextBox{
+    margin: 10px 10px;
+    border-radius: 30px;
+    padding: 10px 15px;
+    background-color: var(--color1);
+    font-size: 15px;
+}
+
+.senderTextBox{
+    border-bottom-right-radius: 5px;
+    background-color: var(--color3);
+    color: white;
+}
+
+.receiverTextBox{
+    border-bottom-left-radius: 5px;
+}
+
+.Profile{
+    width: 30px !important;
+    height: 30px !important;
+    color: var(--color3)
+}
+.Time{
+    font-size: 13px;
+    font-weight: 500;
+    margin: 5px 5px;
+}

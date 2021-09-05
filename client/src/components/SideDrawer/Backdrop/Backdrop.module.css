@@ -1,0 +1,19 @@
+.Backdrop{
+    background-color: rgba(24, 23, 23, 0.555);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.Show{
+    opacity: 1;
+    z-index: 100;
+}
+
+.Hide{
+    opacity: 0;
+    z-index: -100;
+}

@@ -1,0 +1,11 @@
+.Items{
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    align-items: center;
+}
+
+img{
+    width: 60px;
+    height: 60px;
+}

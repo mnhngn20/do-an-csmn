@@ -1,0 +1,34 @@
+.ChatView{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+.Smile{
+    width: 300px !important;
+    height: 300px !important;
+    color: var(--color3)
+}
+
+.Intro{
+    font-size: 25px;
+    font-weight: Bold;
+    color: var(--color3);
+    text-align: center;
+}
+
+.Centered{
+    justify-content: center;
+}
+
+@media(max-width: 900px){
+    .ChatView{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+    }
+}

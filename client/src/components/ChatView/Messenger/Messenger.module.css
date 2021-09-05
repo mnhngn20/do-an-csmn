@@ -1,0 +1,54 @@
+.Messenger{
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.Input{
+    border-radius: 20px;
+    border: 1px solid var(--color2-dark);
+    min-height: 30px;
+    width: 45vw;
+    outline: none;
+    padding: 5px 20px;
+    margin: 10px 20px;
+    height: 7vh;
+}
+
+.SubmitBtn{
+    color: var(--color3);
+    width: 30px !important;
+    height: 30px !important;
+    padding: 5px 5px
+}
+
+.SubmitBtn:hover{
+    background-color: var(--color2-dark);
+    border-radius: 50%;
+}
+
+@media(max-width: 900px){
+    .Messenger{
+        display: flex;
+        align-items: center;
+        padding: 5px 15px;
+    }
+    
+    .Input{
+        border-radius: 20px;
+        border: 1px solid var(--color2-dark);
+        min-height: 30px;
+        min-width: 30vw;
+        width: 70vw;
+        outline: none;
+        padding: 5px 20px;
+        margin: 10px 20px;
+    }
+    
+    .SubmitBtn{
+        color: var(--color3);
+        width: 30px !important;
+        height: 30px !important;
+        padding: 5px 5px
+    }
+}
