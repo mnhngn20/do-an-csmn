@@ -16,4 +16,5 @@
 .Hide{
     opacity: 0;
     z-index: -100;
+    visibility: hidden;
 }

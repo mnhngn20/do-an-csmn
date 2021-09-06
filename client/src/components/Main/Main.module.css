@@ -1,0 +1,96 @@
+.Container{
+    background-color: var(--color2);
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.Left{
+    width: 30%;
+    padding: 10px 5px;
+    border-right: 2px solid var(--color2-dark);
+}
+
+.Right{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 70%;
+}
+
+.Social{
+    width: 100%;
+    padding: 10px 5px;
+    border-right: 2px solid var(--color2-dark);
+}
+
+.ChatView{
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    z-index: 150;
+    background-color: var(--color2);
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.preload *{
+    animation-duration: 0s !important;
+    -webkit-animation-duration: 0s !important;
+    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;}
+
+@media(max-width: 900px){
+    .Container{
+        background-color: var(--color2);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Right{
+        position: absolute;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 100%;
+        z-index: 150;
+        background-color: var(--color2);
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+    .Show{
+        display: flex;
+        animation: showConversation 0.3s ;
+        animation-fill-mode:forwards
+    }
+    
+    .Hide{
+        animation: hideConversation 0.3s;
+        animation-fill-mode:forwards;
+        display: flex;
+        overflow: hidden;
+    }
+    
+    @keyframes showConversation {
+        from {left: 100vw;}
+        to {left: 0vw;}
+    }
+    
+    @keyframes hideConversation {
+        0% {
+            left: 0vw
+        }
+        99% {
+            left: 100vw;
+        }
+        100% {
+            left: 100vw;
+            width: 0;
+        }
+    }
+
+}

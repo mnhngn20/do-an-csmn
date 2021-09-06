@@ -1,0 +1,23 @@
+.SignUp{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center; 
+    margin-top: 20vh;
+}
+
+.Form{
+    height: 60vh;
+    width: 70%;
+    background-color: var(--color3);
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 0px;
+    border-radius: 30px;
+}
+
+.Form h1{
+
+}
