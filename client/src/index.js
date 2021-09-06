@@ -7,12 +7,13 @@ import reportWebVitals from './reportWebVitals';
 //redux
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
+import authReducer from './redux/reducers/Authentication';
 import thunk from 'redux-thunk';
 //route
 import { BrowserRouter } from 'react-router-dom'
 
 const rootReducer = combineReducers({
-
+  authReducer: authReducer
 });
 
 const composeEnhancers = process.env.NODE_ENV === 'development'  

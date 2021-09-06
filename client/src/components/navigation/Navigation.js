@@ -7,11 +7,17 @@ import Logo from '../../assets/logo.png';
 import Items from './items/Items';
 
 const Navigation = ({clicked}) => {
+    const screenWidth = window.innerWidth
     return (
         <div className={classes.NavBar}>
-            <img src={Logo} alt="Logo" className = {classes.Logo}/>
-            <MenuIcon className = {[classes.Logo, classes.MobileOnly].join(' ')} onClick={clicked}/>
-            <Items />
+            <div className={classes.Container}>
+                <img src={Logo} alt="Logo" className = {classes.Logo}/>
+                <MenuIcon className = {[classes.Logo, classes.MobileOnly].join(' ')} onClick={clicked}/>
+                <div className={classes.DesktopOnly}>
+                    <Items />
+                </div>
+            </div>
+            
         </div>
     )
 }

@@ -2,22 +2,131 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-self: center; 
-    margin-top: 20vh;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 
 .Form{
-    height: 60vh;
-    width: 70%;
-    background-color: var(--color3);
+    width: 40%;
+    height: 100%;
+    background-color: var(--color2);
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: 20px 0px;
-    border-radius: 30px;
+    border-right: 2px solid var(--color2-dark);
 }
 
 .Form h1{
+    font-size: 35px;
+    color: var(--color4);
+    margin: 20px 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.SubHeader{
+    display: none;
+}
+
+.Welcome{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color2);
+    height: 100%;
+}
+
+.Logo{
+    width: 250px;
+    height: 250px;
+}
+
+.WelcomeLine{
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--color4)
+}
+
+.BtnSbmt{
+    border-radius: 20px;
+    border: 1px solid var(--color4);
+    background-color: var(--color4);
+    padding: 8px 15px;
+    font-weight: 500;
+    font-size: 18;
+    color: var(--color1)
+}
+
+.BtnSbmt:hover{
+    background-color: var(--color4-light);
+}
+
+@media(max-width: 900px){
+    .SignUp{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: auto;
+        flex-flow: column;
+        height: 100%;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .Form{
+        width: 100%;
+        height: 100%;
+        background-color: var(--color2);
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px 0px;
+        border-right: 2px solid var(--color2-dark);
+    }
+    
+    .Form h1{
+        font-size: 35px;
+        color: var(--color4);
+        margin: 20px 0px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .Welcome{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color2);
+        height: 100%;
+    }
+    
+    .Logo{
+        display: none;
+    }
+    
+    .WelcomeLine{
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+        color: var(--color4)
+    }
+    
+    .BtnSbmt{
+        padding: 10px 20px;
+    }
+    .SubHeader{
+        display: block;
+        font-size: 20px;
+        color: var(--color4);
+        text-decoration: underline;
+    }
 
 }

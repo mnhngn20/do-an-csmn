@@ -1,8 +1,29 @@
 .Items{
     display: flex;
     justify-content: flex-end;
-    width: 70%;
+    width: 100%;
     align-items: center;
+}
+
+.Icon{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    background-color: var(--color4-light);
+    color: var(--color1-dark);
+    padding: 10px 10px;
+}
+
+.Active.isActive{
+    color: var(--color1) !important
+}
+
+a{
+    text-decoration: none;
+}
+
+.Icon:hover{
+    color: var(--color1)
 }
 
 img{

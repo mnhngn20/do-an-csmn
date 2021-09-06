@@ -12,7 +12,7 @@ const messengerRouter = require('./src/routes/messenger.route')
 const authMiddleware = require('./src/middlewares/auth.middleware');
 
 dotenv.config();
-const port = 3000;
+const port = 8800;
 //connect mongoDB
 mongoose.connect(
     process.env.MONGO_URL,

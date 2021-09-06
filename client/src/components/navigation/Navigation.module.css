@@ -4,14 +4,29 @@
     display: flex;
     background-color: var(--color4);
     justify-content: center;
-    align-items: center;
     left: 0;
     top: 0;
+}
+.Container{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.DesktopOnly{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
 }
 .MobileOnly{
     display: none !important;
 }
 @media(max-width: 900px){
+    .NavBar{
+        justify-content: flex-start;
+    }
     .Logo{
         width: 40px !important;
         height: 40px !important;
@@ -20,5 +35,9 @@
     }
     .MobileOnly{
         display: block !important;
+        margin-left: 10px;
+    }
+    .DesktopOnly{
+        display: none !important;
     }
 }

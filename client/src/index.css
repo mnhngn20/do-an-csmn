@@ -1,12 +1,16 @@
 *{
   --color1: #F1ECC3;
   --color1-dark: #c4bf9f;
+  --color1-light: #fff9d0;
   --color2: #C9D8B6;
   --color2-dark: #bac7a8;
+  --color2-light: #d6e6c1;
   --color3: #57837B;
   --color3-dark: #446660;
   --color4: #515E63;
   --color4-dark: #373f42;
+  --color4-light: #6b7c83;
+
   font-family: 'Barlow', sans-serif;
   box-sizing: border-box;
 
@@ -25,4 +29,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+@media(max-width: 900px){
+  body{
+    background-color: var(--color2);
+  }
 }

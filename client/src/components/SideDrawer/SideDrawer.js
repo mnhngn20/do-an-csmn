@@ -5,6 +5,7 @@ import Backdrop from './Backdrop/Backdrop';
 import Logo from '../../assets/logo.png';
 
 import classes from './SideDrawer.module.css';
+import Items from '../navigation/items/Items';
 
 const SideDrawer = ({show, clicked}) => {
     return (
@@ -12,9 +13,8 @@ const SideDrawer = ({show, clicked}) => {
             <Backdrop clicked={clicked} show={show}/>
             <div className = {[classes.SideDrawer, show ? classes.Show : classes.Hide].join(' ')}>
                 <img src = {Logo} className={classes.Logo} alt="Logo" />
-                <Social />
+                <Items />
             </div>
-
         </Auxi>
     )
 }
