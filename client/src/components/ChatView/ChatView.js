@@ -7,6 +7,7 @@ import Messenger from './Messenger/Messenger';
 import Info from './Info/Info';
 import Auxi from '../../helpers/Auxi/Auxi';
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
+
 const ChatView = ({isOnConversation, goBack}) => {
     let view = isOnConversation ?
         <Auxi>

@@ -14,7 +14,7 @@ const Navigation = ({clicked}) => {
                 <img src={Logo} alt="Logo" className = {classes.Logo}/>
                 <MenuIcon className = {[classes.Logo, classes.MobileOnly].join(' ')} onClick={clicked}/>
                 <div className={classes.DesktopOnly}>
-                    <Items />
+                    <Items showLogin/>
                 </div>
             </div>
             

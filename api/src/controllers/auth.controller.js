@@ -66,7 +66,8 @@ module.exports.login = async (req, res) => {
             res.status(200).json({
                 accessToken,
                 refreshToken,
-                expiresIn: 3600
+                expiresIn: 3600,
+                userId: getUser._id
             })
         }else{
             res.status(401).json({
@@ -97,7 +98,7 @@ module.exports.refreshToken = async (req, res) => {
                     refreshToken,
                     _id: decoded.data.userId
                 })
-                return res.status(200).json({accessToken, refreshToken, expiresIn: 3600});
+                return res.status(200).json({accessToken, refreshToken, expiresIn: 3600, userId: decoded.data.userId});
             }catch (err){
                 return res.status(402).json({
                     message: 'Invalid token.'

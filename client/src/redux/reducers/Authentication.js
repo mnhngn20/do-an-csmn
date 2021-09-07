@@ -19,7 +19,7 @@ const authSuccess = (state, action) => {
     return updateObject(state, {
         userId: action.userId,
         error: null,
-        token: action.token,
+        token: action.accessToken,
         loading: false,
         isAuth: action.isAuth
     });
@@ -32,13 +32,13 @@ const authFail = (state, action) => {
     });
 }
 
-// const authLogout = (state, action) => {
-//     return updateObject(state, {
-//         userId: null,
-//         token: null,
-//         isAuth: false
-//     })
-// }
+const authLogout = (state, action) => {
+    return updateObject(state, {
+        userId: null,
+        token: null,
+        isAuth: false
+    })
+}
 
 const regSuccess = (state, action) => {
     return updateObject(state, {
@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.REG_SUCCESS: return regSuccess(state, action);
-        // case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
+        case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         default: return state;
     }
 }

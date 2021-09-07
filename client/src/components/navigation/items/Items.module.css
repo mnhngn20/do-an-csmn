@@ -10,8 +10,12 @@
     height: 40px !important;
     border-radius: 50%;
     background-color: var(--color4-light);
-    color: var(--color1-dark);
+    color: var(--color1);
     padding: 10px 10px;
+}
+
+.Icon:hover{
+    background-color: var(--color4-dark);
 }
 
 .Active.isActive{
@@ -31,6 +35,20 @@ img{
     height: 60px;
 }
 
+a{
+    text-decoration: none;
+    color: var(--color1);
+    font-size: 20px;
+}
+
+/* a:hover{
+    color: var(--color1-light)
+} */
+
+.MobileOnly{
+    display: none;
+}
+
 @media(max-width: 900px){
     .Items{
         flex-flow: column;
@@ -38,8 +56,10 @@ img{
     }
 
     a{
-        text-decoration: none;
-        color: var(--color1);
         font-size: 25px;
+    }
+
+    .MobileOnly{
+        display: block;
     }
 }

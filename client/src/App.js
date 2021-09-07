@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Redirect, withRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
-import SignUp from './components/Authentication/SignUp/SignUp';
-// import Login from './components/Authentication/Login/Login'; 
 import Layout from './layout/Layout';
-
+import * as actions from './redux/actions/index';
 import './App.css';
 import Main from './components/Main/Main';
-import Login from './components/Authentication/Login/Login';
+import Authentication from './components/Authentication/Authentication';
 
-const App = ({isAuthenticated}) => {
+const App = ({isAuthenticated, autoLogin}) => {
   const screenWidth = window.innerWidth
   let routes = (
     <Switch>
-      <Route path='/signup' render={props => <SignUp {...props} />}/>
-      {screenWidth > 900 ? null :<Route path='/login' render={props => <Login {...props} />}/>}
-      <Redirect to='/signup' />
+      <Route path='/authentication' render={props => <Authentication {...props} />}/>
+      <Redirect to='/authentication' />
     </Switch>
   )
   
+    useEffect(() => {
+      autoLogin();
+    }, [])
+
   if(isAuthenticated){
     routes = (
       <Switch>
@@ -40,4 +41,10 @@ const mapState = state => {
   }
 }
 
-export default withRouter(connect(mapState)(App));
+const mapDispatch = dispatch => {
+  return {
+    autoLogin: () => dispatch(actions.autoSignIn())
+  }
+}
+
+export default withRouter(connect(mapState, mapDispatch)(App));

@@ -7,7 +7,6 @@ const Chat = (props) => {
     const chatRef = useRef();
     
     useEffect(()=> {
-        console.log(chatRef)
         chatRef.current.scrollTop = chatRef.current.scrollHeight
     }, [])
 

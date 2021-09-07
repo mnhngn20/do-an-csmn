@@ -20,9 +20,15 @@ const regSuccess = () => {
     }
 }
 
-const authSuccess = () => {
+const authSuccess = (accessToken, refreshToken, userId) => {
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('refreshToken', refreshToken)
     return {
-        type: actionTypes.AUTH_SUCCESS
+        type: actionTypes.AUTH_SUCCESS,
+        accessToken: accessToken,
+        userId: userId,
+        isAuth: true
     }
 }
 
@@ -37,14 +43,51 @@ export const register = (data) => {
     }
 }
 
+export const checkAuthTimeout = (expirationTime) => {
+    return dispatch => {
+        setTimeout(()=> {
+            dispatch(logout())
+        }, expirationTime * 1000)
+    }
+}
+
+export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId'); 
+    localStorage.removeItem('refreshToken');
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
+
 export const auth = (data) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://localhost:8800/auth/login', data).then(res => {
             console.log(res);
-
+            dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId))
+            dispatch(checkAuthTimeout(res.data.expiresIn))
         }).catch(err => {
             dispatch(authFail(err))
         })
+    }
+}
+
+export const autoSignIn = () => {
+    return dispatch => {
+        if(localStorage.getItem('refreshToken')){
+            const reqPayload = {
+                refreshToken: localStorage.getItem('refreshToken')
+            }
+            axios.post('http://localhost:8800/auth/gettoken', reqPayload).then(res => {
+                console.log(res)
+                dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId));
+                // dispatch(fetchUserProfile(res.data.user_id));
+                // dispatch(fetchWatchList(res.data.user_id));
+                // dispatch(checkAuthTimeout(res.data.expires_in))
+            }).catch(err => {
+                dispatch(authFail(err))
+            })
+        }
     }
 }

@@ -1,1 +1,1 @@
-export { register, auth } from './Authentication'
+export { register, auth, autoSignIn, logout } from './Authentication'

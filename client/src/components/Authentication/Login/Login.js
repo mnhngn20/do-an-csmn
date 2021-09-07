@@ -6,9 +6,8 @@ import classes from './Login.module.css';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { updateObject } from '../../../helpers/ultility';
 import Modal from '../../UI/Modal/Modal';
-import { Link } from 'react-router-dom';
 
-const Login = ({error, loading, login}) => {
+const Login = ({error, loading, login, clicked}) => {
     const [email, setEmail] = useState({
         value: '',
         isValid: false,
@@ -113,7 +112,7 @@ const Login = ({error, loading, login}) => {
                 className={[classes.BtnSbmt, canSubmit ? null : classes.Cantsbmt].join(' ')}
                 disabled={!canSubmit}><ArrowForwardIcon className={classes.Icon}/></button>
             <div className={classes.MobileOnly}>
-                <Link to='/signup'>Create an account</Link>
+                <p className={classes.Switch} onClick={clicked}>Create an account</p>
             </div>
         </form>
     )

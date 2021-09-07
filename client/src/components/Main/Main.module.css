@@ -22,11 +22,11 @@
     width: 100%;
     padding: 10px 5px;
     border-right: 2px solid var(--color2-dark);
+    display: none;
 }
 
 .ChatView{
     position: absolute;
-    display: flex;
     flex-flow: column;
     align-items: center;
     width: 100%;
@@ -35,6 +35,7 @@
     top: 0;
     left: 0;
     height: 100%;
+    display: none;
 }
 
 .preload *{
@@ -62,6 +63,23 @@
         left: 0;
         height: 100%;
     }
+
+    .Left{
+        display: none;
+    }
+
+    .Right{
+        display: none;
+    }
+
+    .Social{
+        display: block;
+    }
+
+    .ChatView{
+        display: flex;
+    }
+
     .Show{
         display: flex;
         animation: showConversation 0.3s ;

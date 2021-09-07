@@ -11,8 +11,24 @@
     color: var(--color1-dark)
 }
 
+.Subtitle{
+    display: none;
+}
+
 @media(max-width: 900px){
+    .Item{
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+    }
     .Title{
         margin: 20px 0px;
+    }
+    .Subtitle{
+        display: block;
+        text-align: center;
+        font-weight: 500;
+        color: var(--color1);
+        margin: 5px 0px;
     }
 }

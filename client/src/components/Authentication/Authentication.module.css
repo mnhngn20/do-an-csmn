@@ -1,0 +1,19 @@
+.MobileOnly{
+    display: none;
+}
+
+.DesktopOnly{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 900px){
+    .DesktopOnly{
+        display: none;
+    }
+
+    .MobileOnly{
+        display: block;
+    }
+}
