@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Input from '../../UI/Input/Input';
-import axios from 'axios'
-
+import { connect } from 'react-redux';
 import classes from './SignUp.module.css';
+
+import Input from '../../UI/Input/Input';
+import * as actions from '../../../redux/actions/index'
 import Logo from '../../../assets/logo-dark.png';
 import { updateObject } from '../../../helpers/ultility';
+import Modal from '../../UI/Modal/Modal';
+import { Link } from 'react-router-dom';
 
-const SignUp = ({clicked}) => {
+const SignUp = ({clicked, loading, error, signUp}) => {
     const [name, setName] = useState({
         value: '',
         isValid: false,
@@ -28,6 +31,9 @@ const SignUp = ({clicked}) => {
         isNotTouched: true
     });
     const [canSubmit, setCanSubmit] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     const isEmail = (input) => {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -41,6 +47,14 @@ const SignUp = ({clicked}) => {
             setCanSubmit(false)
         }
     }, [name, email, password, confirmPassword])
+
+    useEffect(()=>{
+        if(isSubmitted && error && !loading){
+            setShowError(true)
+        } else if(isSubmitted && !error && !loading){
+            setShowSuccess(true)
+        }
+    }, [error, loading, isSubmitted])
 
     const onInputChange = (e, type) => {
         const newInput = e.target.value;
@@ -84,16 +98,31 @@ const SignUp = ({clicked}) => {
             email: email.value,
             password: password.value
         }
-        axios.post('http://localhost:8800/auth/signup', data).then(()=> {
-            console.log("suc sec")
-        })
+        signUp(data);
+        setIsSubmitted(true)
+    }
 
+    const hideModal = () =>{
+        setShowError(false);
+        setShowSuccess(false);
     }
 
     return (
         <div className={classes.SignUp}>
+            <Modal 
+                show={showSuccess} 
+                modalType="Success"
+                modalClosed={hideModal}>
+                <p>Signed Up Successful</p>
+            </Modal>
+            <Modal 
+                show={showError} 
+                modalType="Error" 
+                modalClosed={hideModal}>
+                <p>Email is already existed.</p>
+            </Modal>
             <form className={classes.Form} onSubmit={(e) => submitHandler(e)}>
-                <h1>Create an account<span className={classes.SubHeader} onClick={clicked}><br></br>or click here to login</span></h1>
+                <h1>Create an account<Link to="/login" className={classes.SubHeader} onClick={clicked}><br></br>or click here to login</Link></h1>
                 <Input 
                     type="text" 
                     title="Name" 
@@ -123,7 +152,7 @@ const SignUp = ({clicked}) => {
                     isValid={confirmPassword.isValid || confirmPassword.isNotTouched}
                     message="Your password doesn't match."/>
                 <button className={[classes.BtnSbmt, canSubmit ? null : classes.Cantsbmt].join(' ')} type="Submit"
-                    disabled={canSubmit ? false : true}>SIGN UP</button>
+                    disabled={!canSubmit}>SIGN UP</button>
             </form>
             <div className={classes.Welcome}>
                 <img src={Logo} alt="logo" className={classes.Logo}/>
@@ -133,4 +162,17 @@ const SignUp = ({clicked}) => {
     )
 }
 
-export default SignUp;
+const mapState = (state) => {
+    return {
+        loading: state.authReducer.loading,
+        error: state.authReducer.error,
+    }
+}
+
+const mapDispatch = (dispatch) => {
+    return {
+        signUp: (data) => dispatch(actions.register(data))
+    }
+}
+
+export default connect(mapState, mapDispatch)(SignUp);

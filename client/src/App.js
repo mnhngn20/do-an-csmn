@@ -7,11 +7,14 @@ import Layout from './layout/Layout';
 
 import './App.css';
 import Main from './components/Main/Main';
+import Login from './components/Authentication/Login/Login';
 
 const App = ({isAuthenticated}) => {
+  const screenWidth = window.innerWidth
   let routes = (
     <Switch>
       <Route path='/signup' render={props => <SignUp {...props} />}/>
+      {screenWidth > 900 ? null :<Route path='/login' render={props => <Login {...props} />}/>}
       <Redirect to='/signup' />
     </Switch>
   )

@@ -5,7 +5,7 @@ const initialState = {
     isAuth: false,
     userId: null,
     userData: null,
-    loading: true,
+    loading: false,
     error: null
 }
 
@@ -40,11 +40,19 @@ const authFail = (state, action) => {
 //     })
 // }
 
+const regSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: null
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.AUTH_START: return authStart(state, action);
         case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
         case actionTypes.AUTH_FAIL: return authFail(state, action);
+        case actionTypes.REG_SUCCESS: return regSuccess(state, action);
         // case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         default: return state;
     }

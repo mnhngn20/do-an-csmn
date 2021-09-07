@@ -10,3 +10,9 @@
 .Title:hover{
     color: var(--color1-dark)
 }
+
+@media(max-width: 900px){
+    .Title{
+        margin: 20px 0px;
+    }
+}

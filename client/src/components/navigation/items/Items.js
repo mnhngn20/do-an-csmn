@@ -31,7 +31,22 @@ const Items = ({isAuthenticated}) => {
                     </Item>
                 </Auxi>
                 :
-                <Login />
+                <Auxi>
+                    <Item>
+                        <NavLink 
+                            activeClassName={classes.Active}
+                            to='/login'>
+                            LOG IN
+                        </NavLink>
+                    </Item>
+                    <Item>
+                        <NavLink 
+                            activeClassName={classes.Active}
+                            to="/signup">
+                            SIGN UP
+                        </NavLink>
+                    </Item>
+                </Auxi>
             }
         </div>
     )

@@ -11,7 +11,7 @@ const emailSender = require('../utils/emailSender');
 module.exports.signUp = async (req, res) => {
     const users = await User.exists({email: req.body.email});
     if(users){
-        res.status(403).json({
+        res.status(409).json({
             message: "Email is already in used."
         })
         return;

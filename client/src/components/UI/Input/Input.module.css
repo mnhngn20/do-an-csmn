@@ -4,7 +4,7 @@
 }
 
 .Field{
-    width: 20vw;
+    width: 30vw;
     height: 30px;
     border-radius: 30px;
     outline: none;
@@ -28,13 +28,13 @@
 }
 
 .isNotValid{
-    border: 1px solid #f15252;
+    border: 2px solid #bb3737;
 }
 
 .Message{
-    color: #f15252;
+    color: #bb3737;
     font-weight: 500;
-    margin: 5px 0px;
+    margin: 5px auto;
     max-width: 20vw;
     text-align: center;
 }
@@ -62,5 +62,8 @@
         font-weight: 500;
         font-size: 16px;
         color: var(--color4);
+    }
+    .Message{
+        max-width: 50vw;
     }
 }

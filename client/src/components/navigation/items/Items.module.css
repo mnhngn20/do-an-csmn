@@ -30,3 +30,16 @@ img{
     width: 60px;
     height: 60px;
 }
+
+@media(max-width: 900px){
+    .Items{
+        flex-flow: column;
+        margin: 50px 0px;
+    }
+
+    a{
+        text-decoration: none;
+        color: var(--color1);
+        font-size: 25px;
+    }
+}

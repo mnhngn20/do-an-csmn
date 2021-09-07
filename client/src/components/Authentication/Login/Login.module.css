@@ -45,13 +45,31 @@
 .BtnSbmt:hover{
     background-color: var(--color4-dark);
 }
+
 .Header{
     display: none;       
 }
+
+.isNotValid{
+    border: 2px solid #bb3737 !important;
+}
+
+.Cantsbmt{
+    cursor: not-allowed;
+}
+
+.Cantsbmt:hover{
+    background-color: var(--color3) !important;
+}
+
+.MobileOnly{
+    display: none;
+}
+
 @media(max-width: 900px){
     .Header{
         display: block;
-        color: var(--color1);
+        color: var(--color4);
         font-size: 30px;
         font-weight: 500;
     }
@@ -63,21 +81,41 @@
         margin-top: 20px;
     }
     
+    .Login a{
+        color: var(--color4);
+        font-weight: 500;
+        font-size: 20px;
+    }
+    
     .Login .Title{
         margin: 10px 0px;
         font-size: 20px;
         font-weight: 500;
+        color: var(--color4);
+
     }
     
     .Input{
-        width: 50vw;
+        width: 70vw;
         padding: 6px 10px;
         margin-bottom: 10px;
         margin-right: 0px;
+        border: 1px solid var(--color2-dark);
+        background-color: var(--color1);
     }
     
+    .Input:focus{
+        background-color: var(--color1-light);
+        border: 2px solid var(--color4-dark);
+    }
+
     .BtnSbmt{
         margin-top: 5px;
+    }
+
+    .MobileOnly{
+        display: block;
+        margin: 20px 0px
     }
 }
 
