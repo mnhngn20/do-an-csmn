@@ -66,6 +66,15 @@
     background-color: var(--color4-light);
 }
 
+.Cantsbmt{
+    cursor: not-allowed;
+    background-color: var(--color4-dark);
+}
+
+.Cantsbmt:hover{
+    background-color: var(--color4-dark) !important;
+}
+
 @media(max-width: 900px){
     .SignUp{
         width: 100%;

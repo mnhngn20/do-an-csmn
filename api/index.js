@@ -20,7 +20,7 @@ mongoose.connect(
     () => {
       console.log("Connected to MongoDB");
     }
-  );
+);
 
 //Set up back end server
 const app = express();
@@ -30,10 +30,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello Worlddd')
+    res.send('Hello World')
 });
-app.use('/auth', authRoute)
 //use routes
+app.use('/auth', authRoute)
 app.use('/users', authMiddleware.isAuth, userRoute);
 app.use('/messenger', authMiddleware.isAuth, messengerRouter)
 app.listen(port);

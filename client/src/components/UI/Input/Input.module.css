@@ -27,6 +27,18 @@
     color: var(--color4);
 }
 
+.isNotValid{
+    border: 1px solid #f15252;
+}
+
+.Message{
+    color: #f15252;
+    font-weight: 500;
+    margin: 5px 0px;
+    max-width: 20vw;
+    text-align: center;
+}
+
 @media(max-width: 900px){
     .Input{
         display: flex;
