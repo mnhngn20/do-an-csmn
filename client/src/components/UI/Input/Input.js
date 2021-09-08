@@ -9,7 +9,8 @@ const Input = ({type, value, placeholder, title, changed, isValid, message}) => 
             <input type={type} value={value} 
                 placeholder={placeholder}
                 className={[classes.Field, isValid ? null : classes.isNotValid].join(' ')}
-                onChange = {changed}/>
+                onChange = {changed}
+                autoComplete="off"/>
             {isValid ? null : <p className={classes.Message}>{message}</p>}
         </div>
     )

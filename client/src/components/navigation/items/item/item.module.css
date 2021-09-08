@@ -1,14 +1,5 @@
-.Title{
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--color1);
-    margin: 0px 20px;
-    cursor: pointer;
-}
-
-
-.Title:hover{
-    color: var(--color1-dark)
+.Item{
+    margin: 0px 15px;
 }
 
 .Subtitle{
@@ -20,6 +11,7 @@
         display: flex;
         align-items: center;
         flex-flow: column;
+        margin: 0px 0px;
     }
     .Title{
         margin: 20px 0px;

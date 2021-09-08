@@ -12,7 +12,7 @@ import Login from '../../Authentication/Login/Login';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Items = ({isAuthenticated, logout, showLogin}) => {
+const Items = ({isAuthenticated, logout, showLogin, setShowLogin}) => {
     return (
         <div className = {classes.Items}>
             {
@@ -49,18 +49,22 @@ const Items = ({isAuthenticated, logout, showLogin}) => {
                 :
                 <Auxi>
                     { showLogin ? <Login /> : null}
-                    <Item>
+                    <Item clicked = {() => setShowLogin(true)}>
                         <NavLink 
                             activeClassName={classes.Active}
                             to='/login'>
-                            <p className={classes.MobileOnly}>LOG IN</p>
+                                <div className={classes.Item}>
+                                    <p className={classes.MobileOnly}>LOG IN</p>
+                                </div>
                         </NavLink>
                     </Item>
-                    <Item>
+                    <Item clicked = {() => setShowLogin(false)}>
                         <NavLink 
                             activeClassName={classes.Active}
                             to="/signup">
-                            <p className={classes.MobileOnly}>SIGN UP</p>
+                                <div className={classes.Item}>
+                                    <p className={classes.MobileOnly}>SIGN UP</p>
+                                </div>
                         </NavLink>
                     </Item>
                 </Auxi>
@@ -77,7 +81,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
     return {
-        logout: () => dispatch(actions.logout())
+        logout: () => dispatch(actions.logout()),
+        setShowLogin: (value) => dispatch(actions.showLogin(value)) 
     }
 }
 

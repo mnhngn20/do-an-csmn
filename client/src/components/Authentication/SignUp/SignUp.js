@@ -121,7 +121,7 @@ const SignUp = ({clicked, loading, error, signUp}) => {
                 <p>Email is already existed.</p>
             </Modal>
             <form className={classes.Form} onSubmit={(e) => submitHandler(e)}>
-                <h1>Create an account<p className={classes.SubHeader} onClick={clicked}><br></br>or click here to login</p></h1>
+                <h1>Create an account<span className={classes.SubHeader} onClick={clicked}><br></br>or click here to login</span></h1>
                 <Input 
                     type="text" 
                     title="Name" 

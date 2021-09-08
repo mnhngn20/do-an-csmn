@@ -1,6 +1,19 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+const switchMode = (value) => {
+    return {
+        type: actionTypes.SHOW_LOGIN,
+        value: value
+    }
+}
+
+export const showLogin = (value) => {
+    return dispatch => {
+        dispatch(switchMode(value))
+    }
+}
+
 const authStart = () => {
     return {
         type: actionTypes.AUTH_START

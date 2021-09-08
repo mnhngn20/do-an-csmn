@@ -49,6 +49,18 @@ a{
     display: none;
 }
 
+.Item{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color1);
+    margin: 0px 20px;
+    cursor: pointer;
+}
+
+.Item:hover{
+    color: var(--color1-dark)
+}
+
 @media(max-width: 900px){
     .Items{
         flex-flow: column;

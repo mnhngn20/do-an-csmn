@@ -2,7 +2,7 @@ const Message = require('../models/Message');
 const Conversation = require('../models/Conversation');
 
 module.exports.newConversation = async (req, res, next) => {
-    checkConversation = await Conversation.exists({
+    const checkConversation = await Conversation.findOne({
         members: [
             req.body.senderId,
             req.body.receiverId
@@ -10,7 +10,8 @@ module.exports.newConversation = async (req, res, next) => {
     })
     if(checkConversation){
         res.status(200).json({
-            message: "Conversation's already created."
+            message: "Conversation's already created.",
+            conversationId: checkConversation._id
         })
     } else {
         try{

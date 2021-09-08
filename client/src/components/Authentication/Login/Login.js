@@ -100,13 +100,15 @@ const Login = ({error, loading, login, clicked}) => {
                 className={[classes.Input, email.isValid || email.isNotTouched ? null : classes.isNotValid].join(' ')} 
                 type="text" 
                 onChange={e => onInputChange(e, "email")}
-                value = {email.value}/>        
+                value = {email.value}
+                autoComplete="off"/>        
             <label className={classes.Title}>Password</label>
             <input 
                 className={[classes.Input, password.isValid || password.isNotTouched ? null : classes.isNotValid].join(' ')} 
                 type="password" 
                 onChange={e => onInputChange(e, "password")}
-                value = {password.value}/>
+                value = {password.value}
+                autoComplete="off"/>
             <button 
                 type="submit" 
                 className={[classes.BtnSbmt, canSubmit ? null : classes.Cantsbmt].join(' ')}
