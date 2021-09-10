@@ -5,6 +5,14 @@
     overflow-y: auto;
     margin-top: 10px;
     padding: 0px 15px;
+    min-height: 67vh;
+}
+
+.Begin{
+    color: var(--color4);
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
 }
 
 .Chat::-webkit-scrollbar {
@@ -34,5 +42,6 @@
         overflow-y: auto;
         margin-top: 10px;
         padding: 0px 10px;
+
     }
 }

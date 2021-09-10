@@ -73,12 +73,35 @@ export const logout = () => {
     }
 }
 
+const fetchUserData = (userData) => {
+    return {
+        type: actionTypes.FETCH_USER_DATA,
+        userData: userData
+    }
+}
+
+export const fetchUser = (response) => {
+    return dispatch => {
+        const config = {
+            headers: {
+                "x-access-token": response.data.accessToken
+            }
+        }
+        axios.get('http://localhost:8800/users/user/'+ response.data.userId, config).then(res => {
+            dispatch(fetchUserData(res.data))
+            dispatch(authSuccess(response.data.accessToken, response.data.refreshToken, response.data.userId))
+        }).catch(err => {
+            dispatch(authFail(err))
+        })
+    }
+}
+
 export const auth = (data) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://localhost:8800/auth/login', data).then(res => {
             console.log(res);
-            dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId))
+            dispatch(fetchUser(res))
             dispatch(checkAuthTimeout(res.data.expiresIn))
         }).catch(err => {
             dispatch(authFail(err))
@@ -94,10 +117,8 @@ export const autoSignIn = () => {
             }
             axios.post('http://localhost:8800/auth/gettoken', reqPayload).then(res => {
                 console.log(res)
-                dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId));
-                // dispatch(fetchUserProfile(res.data.user_id));
-                // dispatch(fetchWatchList(res.data.user_id));
-                // dispatch(checkAuthTimeout(res.data.expires_in))
+                // dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId));
+                dispatch(fetchUser(res))
             }).catch(err => {
                 dispatch(authFail(err))
             })

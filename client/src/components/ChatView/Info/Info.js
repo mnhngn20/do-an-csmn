@@ -1,21 +1,29 @@
 import React from 'react';
-import ProfilePicture from '../../ProfilePicture/ProfilePicture';
+import {connect} from 'react-redux'
 
+import ProfilePicture from '../../ProfilePicture/ProfilePicture';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import classes from './Info.module.css';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-const Info = ({goBack}) => {
+const Info = ({goBack, receiverUser}) => {
     return (
         <div className={classes.Info}>
-
             <div className={classes.Profile}>
-                <ArrowBackIosIcon className={classes.BackIcon} onClick={goBack}/>
+                <div className={classes.MobileOnly}>
+                    <ArrowBackIosIcon className={classes.BackIcon} onClick={goBack}/>
+                </div>
                 <ProfilePicture isOnList/>  
             </div>
-            <h1 className={classes.Name}>Name</h1>
+            <h1 className={classes.Name}>{receiverUser.name}</h1>
             <MoreHorizIcon className={classes.Settings}/>
         </div>
     )
 }
 
-export default Info;
+const mapState = state => {
+    return {
+        receiverUser: state.conversationReducer.receiverUser
+    }
+}
+
+export default connect(mapState)(Info);

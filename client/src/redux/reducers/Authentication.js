@@ -54,6 +54,12 @@ const showLogin = (state, action) => {
     })
 }
 
+const fetchUserData = (state, action) => {
+    return updateObject(state, {
+        userData: action.userData
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.SHOW_LOGIN: return showLogin(state, action);
@@ -62,6 +68,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.REG_SUCCESS: return regSuccess(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
+        case actionTypes.FETCH_USER_DATA: return fetchUserData(state, action);
         default: return state;
     }
 }
