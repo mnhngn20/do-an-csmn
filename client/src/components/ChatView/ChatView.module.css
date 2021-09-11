@@ -23,12 +23,17 @@
     justify-content: center;
 }
 
+.MobileOnly{
+    display: none;
+}
+
 @media(max-width: 900px){
     .ChatView{
         display: flex;
         flex-flow: column;
         align-items: center;
         width: 100vw;
-        height: 100vh;
+        height: 100vh !important;
     }
+    .MobileOnly{display: block;}
 }

@@ -73,10 +73,17 @@ export const logout = () => {
     }
 }
 
-const fetchUserData = (userData) => {
+const fetchUserDataSuccess = (userData) => {
     return {
-        type: actionTypes.FETCH_USER_DATA,
+        type: actionTypes.FETCH_USER_DATA_SUCCESS,
         userData: userData
+    }
+}
+
+const fetchUserDataFail = (error) => {
+    return {
+        type: actionTypes.FETCH_USER_DATA_FAIL,
+        error: error
     }
 }
 
@@ -88,10 +95,10 @@ export const fetchUser = (response) => {
             }
         }
         axios.get('http://localhost:8800/users/user/'+ response.data.userId, config).then(res => {
-            dispatch(fetchUserData(res.data))
+            dispatch(fetchUserDataSuccess(res.data))
             dispatch(authSuccess(response.data.accessToken, response.data.refreshToken, response.data.userId))
         }).catch(err => {
-            dispatch(authFail(err))
+            dispatch(fetchUserDataFail(err))
         })
     }
 }

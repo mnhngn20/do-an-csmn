@@ -54,9 +54,15 @@ const showLogin = (state, action) => {
     })
 }
 
-const fetchUserData = (state, action) => {
+const fetchUserDataSuccess = (state, action) => {
     return updateObject(state, {
         userData: action.userData
+    })
+}
+
+const fetchUserDataFail = (state, action) => {
+    return updateObject(state, {
+        error: action.error
     })
 }
 
@@ -68,7 +74,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.REG_SUCCESS: return regSuccess(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
-        case actionTypes.FETCH_USER_DATA: return fetchUserData(state, action);
+        case actionTypes.FETCH_USER_DATA_SUCCESS: return fetchUserDataSuccess(state, action);
+        case actionTypes.FETCH_USER_DATA_FAIL: return fetchUserDataFail(state, action);
         default: return state;
     }
 }

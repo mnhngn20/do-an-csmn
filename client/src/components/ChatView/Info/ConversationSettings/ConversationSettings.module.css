@@ -38,7 +38,8 @@
 .preload *{
     animation-duration: 0s !important;
     -webkit-animation-duration: 0s !important;
-    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;}
+    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
 
 
 .Option{
@@ -85,5 +86,18 @@
     }
     100% {
         width: 0;
+    }
+}
+
+@media(max-width: 900px){
+    .Options{
+        left: -130px;
+        padding: 0px 0px;
+        border-radius: 15px;
+        border-top-right-radius: 0px;
+    }
+    .Option{
+        height: 80px;
+        padding: 5px 5px;
     }
 }

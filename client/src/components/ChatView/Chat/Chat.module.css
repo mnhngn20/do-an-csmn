@@ -5,7 +5,7 @@
     overflow-y: auto;
     margin-top: 10px;
     padding: 0px 15px;
-    min-height: 67vh;
+    min-height: calc(84vh - 80px);
 }
 
 .Begin{
@@ -42,6 +42,9 @@
         overflow-y: auto;
         margin-top: 10px;
         padding: 0px 10px;
-
+        min-height: calc(85vh - 30px);
+    }
+    .Chat::-webkit-scrollbar {
+        width: 5px;
     }
 }

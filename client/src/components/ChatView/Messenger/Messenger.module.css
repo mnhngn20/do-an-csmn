@@ -1,7 +1,7 @@
 .Messenger{
     display: flex;
     align-items: center;
-    padding: 5px 15px;
+    padding: 0px 15px;
 }
 
 .Input{
@@ -10,9 +10,9 @@
     height: fit-content;
     width: 45vw;
     outline: none;
-    padding: 2vh 20px;
+    padding: 0px 20px;
     margin: 10px 20px;
-    height: 8vh;
+    height: 6vh;
     overflow-y: auto;
     text-align: justify;
     resize: none;
@@ -36,16 +36,23 @@
     background: var(--color3-dark);
 }
 
+.SubmitBtnContainer{
+    border: none;
+    background: none !important;
+}
+
 .SubmitBtn{
     color: var(--color3);
     width: 30px !important;
     height: 30px !important;
-    padding: 5px 5px
+    padding: 5px 5px;
+    background-color: var(--color2-dark);
+    border-radius: 50%;
+
 }
 
 .SubmitBtn:hover{
-    background-color: var(--color2-dark);
-    border-radius: 50%;
+    background-color: var(--color2-light);
 }
 
 @media(max-width: 900px){
@@ -58,12 +65,11 @@
     .Input{
         border-radius: 20px;
         border: 1px solid var(--color2-dark);
-        min-height: 30px;
         min-width: 30vw;
         width: 70vw;
-        outline: none;
-        padding: 5px 20px;
+        padding: 0px 20px;
         margin: 10px 20px;
+        height: 5vh;
     }
     
     .SubmitBtn{

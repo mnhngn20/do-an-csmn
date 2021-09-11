@@ -26,7 +26,9 @@ const Messenger = ({conversationId, send}) => {
     return (
         <form className = {classes.Messenger} onSubmit={canSubmit ? (e) => submitMessage(e, conversationId, message) : null}>
             <input className={classes.Input} maxlength="2024" value={message} onChange={e => onChangeInput(e)}/>
-            <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit]}/>
+            <button type="submit" className={classes.SubmitBtnContainer} disabled={!canSubmit}>
+                <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit]}/>
+            </button>
         </form>
     )
 }
