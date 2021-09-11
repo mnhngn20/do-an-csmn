@@ -52,7 +52,6 @@ module.exports.getConversations = async (req, res, next) => {
 
 module.exports.sendMessage = async (req, res, next) => {
     try{
-        console.log(req.body)
         const newMessage = await Message.create({
             text: req.body.text,
             senderId: req.body.senderId,
@@ -89,6 +88,22 @@ module.exports.getConversation = async (req, res, next) => {
         }
         res.status(200).json(data)
     } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+}
+
+module.exports.deleteConversation = async (req, res, next) => {
+    try {
+        await Conversation.findByIdAndDelete({
+            _id: req.params.conversationId
+        })
+        await Message.deleteMany({conversationId: req.params.conversationId})
+        res.status(200).json({
+            message: "Deleted successfully."
+        })
+    } catch (err){
         res.status(500).json({
             message: err.message
         })

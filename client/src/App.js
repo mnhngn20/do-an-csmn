@@ -8,7 +8,6 @@ import Main from './components/Main/Main';
 import Authentication from './components/Authentication/Authentication';
 
 const App = ({isAuthenticated, autoLogin}) => {
-  const screenWidth = window.innerWidth
   let routes = (
     <Switch>
       <Route path='/authentication' render={props => <Authentication {...props} />}/>
@@ -16,9 +15,9 @@ const App = ({isAuthenticated, autoLogin}) => {
     </Switch>
   )
   
-    useEffect(() => {
-      autoLogin();
-    }, [])
+  useEffect(() => {
+    autoLogin();
+  }, [])
 
   if(isAuthenticated){
     routes = (

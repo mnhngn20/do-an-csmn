@@ -54,7 +54,6 @@ module.exports.login = async (req, res) => {
                 name: getUser.name,
                 email: getUser.email
             }
-            console.log(userData)
             const accessToken = await jwtHelper.generateToken(userData, accessTokenSecret, accessTokenLife);
             const refreshToken = await jwtHelper.generateToken(userData, refreshTokenSecret, refreshTokenLife);
             await Token.deleteOne({_id: getUser._id});
@@ -179,7 +178,6 @@ module.exports.resetPassword = async (req, res, next) => {
         res.status(200).json({
             message: "An email is sent to confirm reseting password."
         })
-        console.log(link)
     } else {
         res.status(403).json({
             message: "Invalid user or email"

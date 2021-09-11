@@ -18,7 +18,6 @@ module.exports.changeProfile = async (req, res, next) => {
         const user = await UserData.findOneAndUpdate(res.locals.userData._id, {
             ...req.body
         });
-        console.log("user", user)
         res.status(200).json({
             message: "Updated profile successfully."
         })

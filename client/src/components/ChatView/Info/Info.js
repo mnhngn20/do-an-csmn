@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 import ProfilePicture from '../../ProfilePicture/ProfilePicture';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import classes from './Info.module.css';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ConversationSettings from './ConversationSettings/ConversationSettings';
+
 const Info = ({goBack, receiverUser}) => {
     return (
         <div className={classes.Info}>
@@ -15,7 +16,7 @@ const Info = ({goBack, receiverUser}) => {
                 <ProfilePicture isOnList/>  
             </div>
             <h1 className={classes.Name}>{receiverUser.name}</h1>
-            <MoreHorizIcon className={classes.Settings}/>
+            <ConversationSettings />
         </div>
     )
 }

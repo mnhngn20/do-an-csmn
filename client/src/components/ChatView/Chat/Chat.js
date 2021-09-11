@@ -11,7 +11,7 @@ const Chat = ({messages, userData}) => {
     }, [messages])
     let m = messages.length === 0 
         ? <p className={classes.Begin}>Let's start your conversation!</p> 
-        : messages.map(message => <Message message={message} isSender={message.senderId === userData._id}/>)
+        : messages.map(message => <Message key={message._id} message={message} isSender={message.senderId === userData._id}/>)
 
     return (
         <div className={classes.Chat} ref={chatRef}>

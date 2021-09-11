@@ -38,7 +38,17 @@ const sendMessage = (state, action) => {
     const cloneMessage = [...state.messages];
     cloneMessage.push(action.message)
     return updateObject(state, {
-        messages: cloneMessage
+        messages: cloneMessage,
+        loading: false,
+        error: null
+    })
+}
+
+const deleteSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: null,
+        conversationId: null
     })
 }
 
@@ -48,6 +58,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_CONVERSATION_FAIL: return fetchConversationFail(state, action)
         case actionTypes.FETCH_CONVERSATION_SUCCESS: return fetchConversationSuccess(state, action)
         case actionTypes.SEND_MESSAGE: return sendMessage(state, action)
+        case actionTypes.DELETE_SUCCESS: return deleteSuccess(state, action)
         default: return state;
     }
 }

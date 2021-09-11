@@ -3,7 +3,6 @@ import React from 'react';
 import classes from './Message.module.css';
 import ProfilePicture from '../../ProfilePicture/ProfilePicture';
 const Message = ({isSender, message}) => {
-    console.log(message)
     return (
         <div className={classes.Container}>
             <div className={[classes.Message, isSender ? classes.senderMessage : ""].join(' ')}>

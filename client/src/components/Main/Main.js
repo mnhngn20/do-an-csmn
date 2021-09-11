@@ -10,15 +10,12 @@ const Main = ({conversationId}) => {
     const [isOnConversation, setIsOnConversation] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const container = useRef()
-    let containerClasses = [classes.Container, classes.preload]
     const toggleConversation = () => {
         setIsOnConversation(true);
     }
     useEffect(() => {
         setTimeout(function(){
-            containerClasses = [classes.Container];
             setIsLoaded(true)
-            console.log(isLoaded)
         },500);
     }, []);
     return (

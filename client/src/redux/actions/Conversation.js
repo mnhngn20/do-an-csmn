@@ -32,6 +32,7 @@ export const sendMessage = (message) => {
 
 export const send = (conversationId, message, senderId) => {
     return dispatch => {
+        dispatch(fetchConversationStart())
         const data = {
             text: message,
             conversationId: conversationId,
@@ -70,6 +71,26 @@ export const getConversation = (friendId) => {
                 }
                 dispatch(fetchConversationSuccess(res.data.conversationId, receiverUser, res.data.messages))
             })
+        }).catch(err => {
+            dispatch(fetchConversationFail(err))
+        })
+    }
+}
+
+const deleteConversationSuccess = () => {
+    return {
+        type: actionTypes.DELETE_SUCCESS
+    }
+}
+
+export const deleteConversation = (conversationId) => {
+    return dispatch => {
+        dispatch(fetchConversationStart());
+        const data = {
+            token: localStorage.getItem('token')
+        }
+        axios.post('http://localhost:8800/messenger/conversation/delete-conversation/'+ conversationId, data).then(res => {
+            dispatch(deleteConversationSuccess())
         }).catch(err => {
             dispatch(fetchConversationFail(err))
         })

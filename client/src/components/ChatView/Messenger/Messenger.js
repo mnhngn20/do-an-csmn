@@ -17,16 +17,17 @@ const Messenger = ({conversationId, send}) => {
         setMessage(e.target.value)
     }   
 
-    const submitMessage = (conversationId, message) => {
+    const submitMessage = (e, conversationId, message) => {
+        e.preventDefault();
         setMessage('');
         send(conversationId, message)
     }
 
     return (
-        <div className = {classes.Messenger}>
-            <textarea className={classes.Input} maxlength="2024" value={message} onChange={e => onChangeInput(e)}/>
-            <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit]} onClick={canSubmit ? () => submitMessage(conversationId, message) : null}/>
-        </div>
+        <form className = {classes.Messenger} onSubmit={canSubmit ? (e) => submitMessage(e, conversationId, message) : null}>
+            <input className={classes.Input} maxlength="2024" value={message} onChange={e => onChangeInput(e)}/>
+            <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit]}/>
+        </form>
     )
 }
 
