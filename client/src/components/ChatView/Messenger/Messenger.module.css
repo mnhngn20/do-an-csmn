@@ -55,6 +55,12 @@
     background-color: var(--color2-light);
 }
 
+.Spinner{
+    width: 30px !important;
+    height: 30px !important;
+    color: var(--color3) !important;
+}
+
 @media(max-width: 900px){
     .Messenger{
         display: flex;

@@ -23,16 +23,29 @@ const fetchConversationSuccess = (conversationId, receiverUser, messages) => {
     }
 }
 
-export const sendMessage = (message) => {
+const sendMessageStart = () => {
     return {
-        type: actionTypes.SEND_MESSAGE,
+        type: actionTypes.SEND_MESSAGE_START
+    }
+}
+
+const sendMessageSuccess = (message) => {
+    return {
+        type: actionTypes.SEND_MESSAGE_SUCCESS,
         message: message
+    }
+}
+
+const sendMessageFail = (err) => {
+    return {
+        type: actionTypes.SEND_MESSAGE_FAIL,
+        error: err
     }
 }
 
 export const send = (conversationId, message, senderId) => {
     return dispatch => {
-        dispatch(fetchConversationStart())
+        dispatch(sendMessageStart())
         const data = {
             text: message,
             conversationId: conversationId,
@@ -44,9 +57,9 @@ export const send = (conversationId, message, senderId) => {
             }
         }
         axios.post('http://localhost:8800/messenger/message/sendmessage', data, config).then(res => {
-            dispatch(sendMessage(res.data));
+            dispatch(sendMessageSuccess(res.data));
         }).catch(err => {
-            dispatch(fetchConversationFail(err))
+            dispatch(sendMessageFail(err))
         })
     }
 }

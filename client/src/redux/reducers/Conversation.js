@@ -1,14 +1,14 @@
 import { updateObject } from '../../helpers/ultility';
 import * as actionTypes from '../actions/actionTypes';
 
-
 const initialState = {
     conversationId: null,
     senderUser: null,
     receiverUser: null,
     messages: [],
     loading: false,
-    error: null
+    error: null,
+    sendMessageLoading: false
 }
 
 const fetchConversationStart = (state, action) => {
@@ -34,13 +34,26 @@ const fetchConversationSuccess = (state, action) => {
     })
 }
 
-const sendMessage = (state, action) => {
+const sendMessageStart = (state, action) => {
+    return updateObject(state, {
+        sendMessageLoading: true
+    })
+}
+
+const sendMessageSuccess = (state, action) => {
     const cloneMessage = [...state.messages];
     cloneMessage.push(action.message)
     return updateObject(state, {
         messages: cloneMessage,
-        loading: false,
+        sendMessageLoading: false,
         error: null
+    })
+}
+
+const sendMessageFail = (state, action) => {
+    return updateObject(state, {
+        sendMessageLoading: false,
+        error: action.error
     })
 }
 
@@ -48,7 +61,8 @@ const deleteSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         error: null,
-        conversationId: null
+        conversationId: null,
+        messages: []
     })
 }
 
@@ -57,7 +71,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_CONVERSATION_START: return fetchConversationStart(state, action)
         case actionTypes.FETCH_CONVERSATION_FAIL: return fetchConversationFail(state, action)
         case actionTypes.FETCH_CONVERSATION_SUCCESS: return fetchConversationSuccess(state, action)
-        case actionTypes.SEND_MESSAGE: return sendMessage(state, action)
+        case actionTypes.SEND_MESSAGE_START: return sendMessageStart(state, action)
+        case actionTypes.SEND_MESSAGE_SUCCESS: return sendMessageSuccess(state, action)
+        case actionTypes.SEND_MESSAGE_FAIL: return sendMessageFail(state, action)
         case actionTypes.DELETE_SUCCESS: return deleteSuccess(state, action)
         default: return state;
     }

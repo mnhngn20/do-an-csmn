@@ -3,17 +3,14 @@ import Friend from './Friend/Friend';
 
 import classes from './List.module.css';
 
-const List = ({clicked, show}) => {
-    let user = {
-        name: "Minh Nguyen 2",
-        _id: "61381d738cf58403ecc3ff0e",
-        email: "minh.quang20@gmail.com",
-        online: true
-    }
+const List = ({clicked, show, users, userData}) => {
+    let list = users.length === 1 ? <p className={classes.NoOnline}>No one is online right now</p> : users.map(user => {
+        if(user.userId !== userData._id)
+        return <Friend clicked={clicked} key={user.userId} userId={user.userId}/>
+    })
     return (
         <div className={[classes.List, show ? classes.Show : classes.Hide].join(' ')}>
-            <Friend clicked={clicked} user={user}/>
-            
+            {list}
         </div>
     )
 }

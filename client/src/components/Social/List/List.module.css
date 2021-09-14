@@ -9,6 +9,12 @@
     transition: all 0.3 ease;
 }
 
+.NoOnline{
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color4)
+}
+
 .Show{
     animation: showList 0.5s forwards;
 }

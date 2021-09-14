@@ -10,6 +10,7 @@ h1{
     font-weight: 500;
     color: var(--color4);
     margin: 10px 0px;
+    cursor: pointer;
 }
 
 .List{
@@ -19,7 +20,8 @@ h1{
 }
 
 .Dropdown{
-    color: var(--color4)
+    color: var(--color4);
+    cursor: pointer;
 }
 
 @media(max-width: 900px){

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import {connect} from 'react-redux'
 
 import Auxi from '../../helpers/Auxi/Auxi';
@@ -6,7 +6,7 @@ import Social from '../Social/Social';
 import ChatView from '../ChatView/ChatView';
 import classes from './Main.module.css';
 
-const Main = ({conversationId}) => {
+const Main = ({conversationId, messages, userData, loadingConversation, sendMessageLoading, receiverUser}) => {
     const [isOnConversation, setIsOnConversation] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const container = useRef()
@@ -18,20 +18,31 @@ const Main = ({conversationId}) => {
             setIsLoaded(true)
         },500);
     }, []);
+
+    const social = useMemo(() => {
+        return <Social setConversation={toggleConversation} userData={userData}/>
+    }, [toggleConversation])
+
+    const chatView = useMemo(() => {
+        return <ChatView conversationId={conversationId} goBack={()=>setIsOnConversation(false)}
+                        messages={messages} userData={userData} loadingConversation={loadingConversation} sendMessageLoading={sendMessageLoading}
+                        receiverUser={receiverUser}/>
+    })
+
     return (
         <Auxi>
             <div className = {[classes.Container, isLoaded ? null :classes.preload].join(' ')} ref={container}>
                 <div className = {classes.Left}>
-                    <Social setConversation={toggleConversation}/>
+                    {social}
                 </div>
                 <div className = {[classes.Right, isOnConversation ? classes.Show : classes.Hide].join(' ')}>
-                    <ChatView conversationId={conversationId} goBack={()=>setIsOnConversation(false)}/>
+                    {chatView}
                 </div>
                 <div className = {classes.Social}>
-                    <Social setConversation={toggleConversation}/>
+                    {social}
                 </div>
                 <div className = {[classes.ChatView, isOnConversation ? classes.Show : classes.Hide].join(' ')}>
-                    <ChatView conversationId={conversationId} goBack={()=>setIsOnConversation(false)}/>
+                    {chatView}
                 </div>
             </div>
         </Auxi>
@@ -40,7 +51,12 @@ const Main = ({conversationId}) => {
 
 const mapState = (state) => {
     return {
-        conversationId: state.conversationReducer.conversationId
+        conversationId: state.conversationReducer.conversationId,
+        messages: state.conversationReducer.messages,
+        userData: state.authReducer.userData,
+        loadingConversation: state.conversationReducer.loading,
+        sendMessageLoading: state.conversationReducer.sendMessageLoading,
+        receiverUser: state.conversationReducer.receiverUser
     }
 }
 

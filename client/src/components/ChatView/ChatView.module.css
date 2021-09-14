@@ -27,6 +27,14 @@
     display: none;
 }
 
+.Spinner{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 @media(max-width: 900px){
     .ChatView{
         display: flex;

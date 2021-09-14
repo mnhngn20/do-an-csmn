@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+import { connectToSocketServer } from './Socket';
+
 const switchMode = (value) => {
     return {
         type: actionTypes.SHOW_LOGIN,
@@ -95,6 +97,7 @@ export const fetchUser = (response) => {
             }
         }
         axios.get('http://localhost:8800/users/user/'+ response.data.userId, config).then(res => {
+            dispatch(connectToSocketServer(response.data.userId))
             dispatch(fetchUserDataSuccess(res.data))
             dispatch(authSuccess(response.data.accessToken, response.data.refreshToken, response.data.userId))
         }).catch(err => {
@@ -123,8 +126,6 @@ export const autoSignIn = () => {
                 refreshToken: localStorage.getItem('refreshToken')
             }
             axios.post('http://localhost:8800/auth/gettoken', reqPayload).then(res => {
-                console.log(res)
-                // dispatch(authSuccess(res.data.accessToken, res.data.refreshToken, res.data.userId));
                 dispatch(fetchUser(res))
             }).catch(err => {
                 dispatch(authFail(err))

@@ -9,5 +9,10 @@ export const FETCH_USER_DATA_FAIL = "fetch_user_data_fail"
 export const FETCH_CONVERSATION_START = "fetch_conversation_start"
 export const FETCH_CONVERSATION_FAIL = "fetch_conversation_fail"
 export const FETCH_CONVERSATION_SUCCESS = "fetch_conversation_success"
-export const SEND_MESSAGE = "send_message"
+export const SEND_MESSAGE_START = "send_message_start"
+export const SEND_MESSAGE_FAIL = "send_message_fail"
+export const SEND_MESSAGE_SUCCESS = "send_message_success"
 export const DELETE_SUCCESS = "delete_success"
+
+export const SET_SOCKET = "set_socket";
+export const SET_ONLINE_USERS = "set_online_users"

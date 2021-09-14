@@ -6,7 +6,6 @@ import classes from './ConversationSettings.module.css'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const ConversationSettings = ({deleteConversation, conversationId}) => {
-    console.log(conversationId)
     const [showOptions, setShowOptions] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
