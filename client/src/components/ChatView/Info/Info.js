@@ -6,9 +6,6 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ConversationSettings from './ConversationSettings/ConversationSettings';
 
 const Info = ({goBack, receiverUser}) => {
-    useEffect(() => {
-        console.log(receiverUser)
-    })
     return (
         <div className={classes.Info}>
             <div className={classes.Profile}>

@@ -27,7 +27,7 @@ const Main = ({conversationId, messages, userData, loadingConversation, sendMess
         return <ChatView conversationId={conversationId} goBack={()=>setIsOnConversation(false)}
                         messages={messages} userData={userData} loadingConversation={loadingConversation} sendMessageLoading={sendMessageLoading}
                         receiverUser={receiverUser}/>
-    })
+    }, [messages, userData, loadingConversation, sendMessageLoading, receiverUser])
 
     return (
         <Auxi>

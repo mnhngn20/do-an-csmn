@@ -13,7 +13,7 @@ const List = ({clicked, show, onlineUsers, users, userData, loading}) => {
                 return <Friend clicked={clicked} key={user.userId} userId={user.userId} onlineUsers={onlineUsers}/>
             } else {
                 if(user._id !== userData._id)
-                return <Friend clicked={clicked} key={user.userId} userId={user._id} onlineUsers={onlineUsers}/>
+                return <Friend clicked={clicked} key={user._id} userId={user._id} onlineUsers={onlineUsers}/>
             }
             
         });

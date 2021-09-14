@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-
+import { getMessage } from './Conversation'
 import { io } from "socket.io-client"
 
 const setSocket = (socket) => {
@@ -23,6 +23,10 @@ export const connectToSocketServer = (userId) => {
         socket.emit("addUser", userId);
         socket.on("getUsers", users => {
             dispatch(setOnlineUsers(users))
+        })
+        socket.on("getMessage", message => {
+            console.log(message)
+            dispatch(getMessage(message))
         })
     }
 }

@@ -43,7 +43,7 @@ const sendMessageFail = (err) => {
     }
 }
 
-export const send = (conversationId, message, senderId) => {
+export const send = (conversationId, message, socket, receiverId) => {
     return dispatch => {
         dispatch(sendMessageStart())
         const data = {
@@ -58,6 +58,11 @@ export const send = (conversationId, message, senderId) => {
         }
         axios.post('http://localhost:8800/messenger/message/sendmessage', data, config).then(res => {
             dispatch(sendMessageSuccess(res.data));
+            const data = {
+                ...res.data, 
+                receiverId: receiverId
+            }
+            socket.emit("sendMessage", data);
         }).catch(err => {
             dispatch(sendMessageFail(err))
         })
@@ -109,3 +114,16 @@ export const deleteConversation = (conversationId) => {
         })
     }
 }
+
+const appendNewMessage = (message) => {
+    return {
+        type: actionTypes.APPEND_NEW_MESSAGE,
+        message: message
+    }
+}
+
+export const getMessage = (message) => {
+    return dispatch => {
+        dispatch(appendNewMessage(message))
+    }
+} 

@@ -6,7 +6,7 @@ import classes from './Messenger.module.css';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Messenger = ({conversationId, send, sendMessageLoading}) => {
+const Messenger = ({conversationId, send, sendMessageLoading, socket, receiverUser}) => {
     const [message, setMessage] = useState('');
     const [canSubmit, setCanSubmit] = useState(false);
 
@@ -18,30 +18,37 @@ const Messenger = ({conversationId, send, sendMessageLoading}) => {
         setMessage(e.target.value)
     }   
 
-    const submitMessage = (e, conversationId, message) => {
+    const submitMessage = (e, conversationId, message, socket, receiverId) => {
         e.preventDefault();
         setMessage('');
-        send(conversationId, message)
+        console.log(socket)
+        send(conversationId, message, socket, receiverId);
     }
 
     return (
-        <form className = {classes.Messenger} onSubmit={canSubmit ? (e) => submitMessage(e, conversationId, message) : null}>
+        <form className = {classes.Messenger} onSubmit={canSubmit ? (e) => submitMessage(e, conversationId, message, socket, receiverUser._id) : null}>
             <input className={classes.Input} value={message} onChange={e => onChangeInput(e)}/>
             <button type="submit" className={classes.SubmitBtnContainer} disabled={!canSubmit}>
                 { 
                 sendMessageLoading 
                 ? <CircularProgress className={classes.Spinner} />
-                : <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit]}/>
+                : <KeyboardReturnIcon className={[classes.SubmitBtn, canSubmit ? null : classes.cantSubmit].join(' ')}/>
                 }
             </button>
         </form>
     )
 }
 
-const mapDispatch = dispatch => {
+const mapState = state => {
     return {
-        send: (conversationId, message) => dispatch(actions.send(conversationId, message))
+        socket: state.socketReducer.socket
     }
 }
 
-export default connect(null, mapDispatch)(Messenger);
+const mapDispatch = dispatch => {
+    return {
+        send: (conversationId, message, socket, receiverId) => dispatch(actions.send(conversationId, message, socket, receiverId))
+    }
+}
+
+export default connect(mapState, mapDispatch)(Messenger);

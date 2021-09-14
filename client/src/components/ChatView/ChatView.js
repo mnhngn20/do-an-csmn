@@ -14,7 +14,7 @@ const ChatView = ({conversationId, goBack, messages, userData, loadingConversati
         <Auxi>
             <Info goBack={goBack} receiverUser={receiverUser}/>
             <Chat messages={messages} userData={userData} sendMessageLoading={sendMessageLoading}/>
-            <Messenger conversationId={conversationId} sendMessageLoading={sendMessageLoading}/>
+            <Messenger conversationId={conversationId} sendMessageLoading={sendMessageLoading} receiverUser={receiverUser}/>
         </Auxi>
         : <Auxi>
             <SentimentVerySatisfiedIcon className={classes.Smile}/>

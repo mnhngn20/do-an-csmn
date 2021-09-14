@@ -18,6 +18,11 @@ module.exports.addUser = async (userId, socketId) => {
     return;
 }
 
+module.exports.getUser = async (userId) => {
+    const user = await OnlineUser.findOne({userId: userId});
+    return user
+}
+
 module.exports.getUsers = async () => {
     const users = await OnlineUser.find({});
     return users

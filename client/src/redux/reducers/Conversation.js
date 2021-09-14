@@ -50,6 +50,14 @@ const sendMessageSuccess = (state, action) => {
     })
 }
 
+const appendNewMessage = (state, action) => {
+    const cloneMessage = [...state.messages];
+    cloneMessage.push(action.message)
+    return updateObject(state, {
+        messages: cloneMessage
+    })
+}
+
 const sendMessageFail = (state, action) => {
     return updateObject(state, {
         sendMessageLoading: false,
@@ -75,6 +83,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SEND_MESSAGE_SUCCESS: return sendMessageSuccess(state, action)
         case actionTypes.SEND_MESSAGE_FAIL: return sendMessageFail(state, action)
         case actionTypes.DELETE_SUCCESS: return deleteSuccess(state, action)
+        case actionTypes.APPEND_NEW_MESSAGE: return appendNewMessage(state, action)
         default: return state;
     }
 }

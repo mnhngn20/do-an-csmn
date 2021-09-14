@@ -21,13 +21,7 @@ const io = require("socket.io")(8900, {
     }
 });
 
-const users = [];
-OnlineUser.find({}, users => {
-    users = users;
-});
-
 io.on('connection', async (socket) => {
-    io.emit("welcome", "hee hee");
     socket.on("addUser", async (userId) => {
         await onlineUserController.addUser(userId, socket.id)
         io.emit("getUsers", await onlineUserController.getUsers())
@@ -35,5 +29,10 @@ io.on('connection', async (socket) => {
     socket.on("disconnect", async () => {
         await onlineUserController.deleteUsers(socket.id)
         io.emit("getUsers", await onlineUserController.getUsers())
+    })
+    socket.on("sendMessage", async (message) => {
+        const receiverUser = await onlineUserController.getUser(message.receiverId);
+        console.log(receiverUser.socketId)
+        io.to(receiverUser.socketId).emit("getMessage", message)
     })
 })
