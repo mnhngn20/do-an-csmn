@@ -7,8 +7,9 @@ import ProfilePicture from '../../../ProfilePicture/ProfilePicture';
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Friend = ({userId, getConversation, clicked, receiverUser}) => {
-    const [user, setUser] = useState(null);
+const Friend = ({userId, getConversation, clicked, receiverUser, onlineUsers}) => {
+    const [displayUser, setDisplayUser] = useState(null);
+    const [isOnline, setIsOnline] = useState(false)
     useEffect(() => {
         const config = {
             headers: {
@@ -20,29 +21,33 @@ const Friend = ({userId, getConversation, clicked, receiverUser}) => {
                 ...res.data,
                 online: true
             }
-            setUser(fetchedUser);
+            setDisplayUser(fetchedUser);
         }).catch(err => {
             console.log(err)
         })
-    }, [])
+    }, [userId])
+
+    useEffect(()=> {
+        setIsOnline(onlineUsers.some(user => user.userId === userId));
+    }, [onlineUsers])
 
     const setConversation = (id) => {
         getConversation(id)
         clicked();
     }
     return (
-        !user ? 
+        !displayUser ? 
         <div className={[classes.Friend, classes.onlineFriend].join(' ')}><CircularProgress className={classes.Spinner}/></div>
-        : <div className={[classes.Friend, user.online ? classes.onlineFriend : null].join(' ')} 
+        : <div className={[classes.Friend, isOnline ? classes.onlineFriend : null].join(' ')} 
             onClick={receiverUser 
-                ? receiverUser._id === user._id 
+                ? receiverUser._id === displayUser._id 
                 ? clicked  
-                : () => setConversation(user._id) 
-                : () => setConversation(user._id)}>
-            <ProfilePicture online={user.online} isOnList/>
-            <div className={[classes.Info, user.online ? classes.onlineInfo : null ].join(' ')}>
-                <p className={classes.Name}>{user.name}</p>
-                <p className={classes.Email}>{user.email}</p>
+                : () => setConversation(displayUser._id) 
+                : () => setConversation(displayUser._id)}>
+            <ProfilePicture online={isOnline} isOnList/>
+            <div className={[classes.Info, isOnline ? classes.onlineInfo : null ].join(' ')}>
+                <p className={classes.Name}>{displayUser.name}</p>
+                <p className={classes.Email}>{displayUser.email}</p>
             </div>
         </div>
     )

@@ -5,11 +5,13 @@ const UserData = require('../models/UserData');
 
 module.exports.newConversation = async (req, res, next) => {
     const checkConversation = await Conversation.findOne({
-        members: [
+        members: {
+            "$all": [
             req.body.senderId,
             req.body.receiverId
-        ]
+        ]}
     })
+    console.log(checkConversation)
     if(checkConversation){
         res.status(200).json({
             message: "Conversation's already created.",

@@ -1,6 +1,17 @@
 const User = require('../models/User');
 const UserData = require('../models/UserData');
 
+module.exports.getAllUsers = async (req, res, next) => {
+    try {
+        const users = await UserData.find({});
+        res.status(200).json(users)
+    } catch (err){
+        res.status(403).json({
+            message: err.message
+        })
+    }
+}
+
 module.exports.getUser = async (req, res, next) => {
     const userId = req.params.userId;
     try {

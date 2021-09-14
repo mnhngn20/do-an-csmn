@@ -110,7 +110,7 @@ export const auth = (data) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://localhost:8800/auth/login', data).then(res => {
-            console.log(res);
+            dispatch(fetchAllUsers(res.data.accessToken))
             dispatch(fetchUser(res))
             dispatch(checkAuthTimeout(res.data.expiresIn))
         }).catch(err => {
@@ -126,10 +126,47 @@ export const autoSignIn = () => {
                 refreshToken: localStorage.getItem('refreshToken')
             }
             axios.post('http://localhost:8800/auth/gettoken', reqPayload).then(res => {
+                dispatch(fetchAllUsers(res.data.accessToken))
                 dispatch(fetchUser(res))
             }).catch(err => {
                 dispatch(authFail(err))
             })
         }
+    }
+}
+
+const fetchAllUsersStart = () => {
+    return {
+        type: actionTypes.FETCH_ALL_USERS_START
+    }
+}
+
+const fetchAllUsersSuccess = (users) => {
+    return {
+        type: actionTypes.FETCH_ALL_USERS_SUCCESS,
+        users: users
+    }
+}
+
+const fetchAllUsersFail = (error) => {
+    return {
+        type: actionTypes.FETCH_ALL_USERS_FAIL,
+        error: error
+    }
+}
+
+const fetchAllUsers = (token) => {
+    return dispatch => {
+        dispatch(fetchAllUsersStart())
+        const config = {
+            headers: {
+                "x-access-token": token
+            }
+        }
+        axios.get('http://localhost:8800/users/get-all-users', config).then(res => {
+            dispatch(fetchAllUsersSuccess(res.data))
+        }).catch(err => {
+            dispatch(fetchAllUsersFail(err))
+        })
     }
 }

@@ -7,7 +7,10 @@ const initialState = {
     userData: null,
     loading: false,
     error: null,
-    showLogin: false
+    showLogin: false,
+    allUsers: [],
+    fetchAllUserLoading: false,
+    fetchAllUserError: null
 }
 
 const authStart = (state, action) => {
@@ -66,6 +69,27 @@ const fetchUserDataFail = (state, action) => {
     })
 }
 
+const fetchAllUsersStart = (state, action) => {
+    return updateObject(state, {
+        fetchAllUserLoading: true
+    })
+}
+
+const fetchAllUsersSuccess = (state, action) => {
+    return updateObject(state, {
+        allUsers: action.users,
+        fetchAllUserLoading: false, 
+        fetchAllUserError: null
+    })
+}
+
+const fetchAllUsersFail = (state, action) => {
+    return updateObject(state, {
+        fetchAllUserLoading: false,
+        fetchAllUserError: action.error
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.SHOW_LOGIN: return showLogin(state, action);
@@ -76,6 +100,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.FETCH_USER_DATA_SUCCESS: return fetchUserDataSuccess(state, action);
         case actionTypes.FETCH_USER_DATA_FAIL: return fetchUserDataFail(state, action);
+        case actionTypes.FETCH_ALL_USERS_START: return fetchAllUsersStart(state, action);
+        case actionTypes.FETCH_ALL_USERS_SUCCESS: return fetchAllUsersSuccess(state, action);
+        case actionTypes.FETCH_ALL_USERS_FAIL: return fetchAllUsersFail(state, action);
         default: return state;
     }
 }
